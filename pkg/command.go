@@ -2,7 +2,9 @@ package pkg
 
 import (
 	"flag"
+	"fmt"
 	"os"
+	"regexp"
 	"unicode"
 )
 
@@ -38,7 +40,6 @@ func Parse() *Command {
 	command.FormatType = set.String("format", "text", "格式化文本")
 	command.TargetLanguage = set.String("tl", targetLanguage, "目标语言")
 	err := set.Parse(os.Args[2:])
-
 	if err != nil {
 		panic("解析参数出错")
 	}
@@ -63,11 +64,9 @@ func (c *Command) isChinese() bool {
 }
 
 func (c *Command) isEnglish() bool {
-	for _, r := range *c.Source {
-		if unicode.IsLetter(r) {
-			return true
-		}
+	ok, err := regexp.MatchString("^([A-z]+)$", *c.Source)
+	if err != nil {
+		fmt.Println(err)
 	}
-
-	return false
+	return ok
 }
