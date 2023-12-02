@@ -1,6 +1,7 @@
 package main
 
 import (
+	basic "ts/config"
 	"ts/pkg"
 	"ts/pkg/aliyun"
 )
@@ -8,6 +9,7 @@ import (
 func main() {
 
 	command := pkg.Parse()
+	basic.Init()
 	aliyun.Init()
 	aliyun.Translate(command)
 }
