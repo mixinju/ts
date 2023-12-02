@@ -1,6 +1,7 @@
 # Golang #
 ######################
 # `go test -c` 生成的二进制文件
+config.ini
 *.test
 # go coverage 工具
 *.out

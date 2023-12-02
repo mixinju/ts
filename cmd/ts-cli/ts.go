@@ -1,21 +1,13 @@
 package main
 
 import (
-	"flag"
-	"fmt"
-	"os"
+	"ts/pkg"
+	"ts/pkg/aliyun"
 )
 
 func main() {
 
-	set := flag.NewFlagSet("demo", 1)
-
-	h := flag.String("help", "df", "fff")
-	err := set.Parse(os.Args[2:])
-
-	fmt.Println(h)
-	if err != nil {
-		fmt.Println("hello")
-	}
-
+	command := pkg.Parse()
+	aliyun.Init()
+	aliyun.Translate(command)
 }

@@ -6,6 +6,7 @@ import (
 	openapi "github.com/alibabacloud-go/darabonba-openapi/v2/client"
 	"github.com/alibabacloud-go/tea/tea"
 	basic "ts/config"
+	"ts/pkg"
 )
 
 // https://api.aliyun.com/api/alimt/2018-10-12/TranslateGeneral?tab=DEMO&lang=GO
@@ -48,13 +49,13 @@ func createClient() *alimt.Client {
 	return client
 }
 
-func Translate() {
+func Translate(command *pkg.Command) {
 	req := alimt.TranslateRequest{
-		SourceText:     tea.String("你好"),
-		SourceLanguage: tea.String("zh"),
-		FormatType:     tea.String("text"),
-		Scene:          tea.String("general"),
-		TargetLanguage: tea.String("en"),
+		SourceText:     command.Source,
+		SourceLanguage: command.SourceLanguage,
+		FormatType:     command.FormatType,
+		Scene:          command.Scene,
+		TargetLanguage: command.TargetLanguage,
 	}
 
 	client := createClient()
