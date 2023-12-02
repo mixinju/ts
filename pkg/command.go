@@ -2,7 +2,6 @@ package pkg
 
 import (
 	"flag"
-	"fmt"
 	"os"
 	"unicode"
 )
@@ -21,13 +20,27 @@ func Parse() *Command {
 	set := flag.NewFlagSet("ts", flag.ExitOnError)
 
 	command.Source = &os.Args[1]
+
+	var sourceLanguage string
+	var targetLanguage string
+	if command.isChinese() {
+		sourceLanguage = Han
+		targetLanguage = En
+	}
+
+	if command.isEnglish() {
+		sourceLanguage = En
+		targetLanguage = Han
+	}
+
+	command.SourceLanguage = set.String("sl", sourceLanguage, "源文本语言")
 	command.Scene = set.String("scene", "general", "场景")
-	command.SourceLanguage = set.String("sl", "zh", "原文本语言,默认中文")
 	command.FormatType = set.String("format", "text", "格式化文本")
+	command.TargetLanguage = set.String("tl", targetLanguage, "目标语言")
 	err := set.Parse(os.Args[2:])
 
 	if err != nil {
-		fmt.Println("解析参数出错")
+		panic("解析参数出错")
 	}
 
 	return command
@@ -38,10 +51,20 @@ func (c *Command) Parse() {
 
 }
 
-func (c *Command) isChinese(s string) bool {
+func (c *Command) isChinese() bool {
 
-	for _, r := range s {
+	for _, r := range *c.Source {
 		if unicode.Is(unicode.Han, r) {
+			return true
+		}
+	}
+
+	return false
+}
+
+func (c *Command) isEnglish() bool {
+	for _, r := range *c.Source {
+		if unicode.IsLetter(r) {
 			return true
 		}
 	}

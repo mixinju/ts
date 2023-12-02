@@ -13,12 +13,8 @@ var (
 
 func Init() {
 
-	once.Do(func() {
-
-	})
-
 	var err error
-	Config, err = ini.Load("/Users/mixinju/code/go/ts/config/config.ini")
+	Config, err = ini.Load("/Users/mixinju/.config/ts/config.ini")
 	if err != nil {
 		fmt.Println(err.Error())
 		panic("读取配置文件出错")

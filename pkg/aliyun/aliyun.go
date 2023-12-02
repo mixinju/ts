@@ -66,5 +66,11 @@ func Translate(command *pkg.Command) {
 		panic("请求阿里云翻译失败")
 	}
 
-	fmt.Println(resp.Body.Data.String())
+	if *resp.Body.Code != 200 {
+		fmt.Printf("请求出错, Code: %v\n", *resp.Body.Code)
+		return
+	}
+
+	fmt.Printf("翻译结果: %v \n", *resp.Body.Data.Translated)
+
 }
