@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	basic "ts/config"
 	"ts/pkg"
 	"ts/pkg/aliyun"
@@ -12,4 +13,6 @@ func main() {
 	basic.Init()
 	aliyun.Init()
 	aliyun.Translate(command)
+
+	fmt.Println("ok")
 }
