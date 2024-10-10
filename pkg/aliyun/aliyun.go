@@ -2,11 +2,16 @@ package aliyun
 
 import (
 	"fmt"
+	basic "ts/config"
+
 	alimt "github.com/alibabacloud-go/alimt-20181012/v2/client"
 	openapi "github.com/alibabacloud-go/darabonba-openapi/v2/client"
 	"github.com/alibabacloud-go/tea/tea"
+<<<<<<< HEAD
 	basic "ts/config"
 	"ts/pkg"
+=======
+>>>>>>> 99adc12 (水电费)
 )
 
 // https://api.aliyun.com/api/alimt/2018-10-12/TranslateGeneral?tab=DEMO&lang=GO
@@ -29,6 +34,10 @@ func Init() {
 
 }
 
+func Hello() {
+	fmt.Println("Hello World")
+}
+
 func createClient() *alimt.Client {
 	config := &openapi.Config{
 		// 必填，您的 AccessKey ID
@@ -43,6 +52,7 @@ func createClient() *alimt.Client {
 	if err != nil {
 		panic("创建客户端失败")
 	}
+
 	return client
 }
 
