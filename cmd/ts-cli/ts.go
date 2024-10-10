@@ -14,4 +14,5 @@ func main() {
 	aliyun.Translate(command)
 
 	fmt.Println("ok")
+	fmt.Println("试试review")
 }
