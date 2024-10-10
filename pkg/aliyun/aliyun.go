@@ -17,9 +17,6 @@ var (
 	accessKeySecret string
 )
 
-// LTAI5tQ2kHepgv2QpxAWo5RG
-// Plqof8Sm3i16KQu8uin6vDmRGoNUgN
-
 func Init() {
 
 	section, err := basic.Config.GetSection(packageName)
@@ -71,6 +68,6 @@ func Translate(command *pkg.Command) {
 		return
 	}
 
-	fmt.Printf("翻译结果: %v \n", *resp.Body.Data.Translated)
+	fmt.Printf("翻译结果:\n %v \n", *resp.Body.Data.Translated)
 
 }

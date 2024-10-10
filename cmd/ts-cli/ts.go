@@ -7,7 +7,6 @@ import (
 )
 
 func main() {
-
 	command := pkg.Parse()
 	basic.Init()
 	aliyun.Init()
